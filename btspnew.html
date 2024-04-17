@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<script>
+function validateForm() {
+  var nameInput = document.getElementById("name").value;
+  var phoneInput = document.getElementById("phone").value;
+  var emailInput = document.getElementById("email").value;
+  var passwordInput = document.getElementById("password").value;
+  var confirmPasswordInput = document.getElementById("confirmPassword").value;
+
+  var nameRegex = /^[a-zA-Z\s]+$/;
+  var phoneRegex = /^\d{10}$/;
+  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+  if (nameInput.length<6 || !nameRegex.test(nameInput)) {
+    alert("Please enter a valid name.");
+    return false;
+  }
+  
+  if (!phoneRegex.test(phoneInput)) {
+    alert("Please enter a valid phone number (10 digits).");
+    return false;
+  }
+  
+  if (!emailRegex.test(emailInput)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+  
+  if (passwordInput.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    return false;
+  }
+
+  if (passwordInput !== confirmPasswordInput) {
+    alert("Passwords do not match.");
+    return false;
+  }
+  
+  return true;
+}
+</script>
+</head>
+<body>
+<form onsubmit="return validateForm()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+  
+  <label for="phone">Phone Number:</label>
+  <input type="text" id="phone" name="phone" required><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required><br><br>
+  
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required><br><br>
+
+  <label for="confirmPassword">Confirm Password:</label>
+  <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+  
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html
